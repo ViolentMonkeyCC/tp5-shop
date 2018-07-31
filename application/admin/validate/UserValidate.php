@@ -29,6 +29,7 @@ class UserValidate extends Validate
     ];
     //3.验证场景
     protected $scene = [
+        'login' => ['username' => 'require', 'password'],
         'add' => ['username', 'password', 'repassword'],
         'OnlyUsername' => ['username' => 'require'],
         'UsernamePassword' => ['username' => 'require', 'password', 'repassword'],

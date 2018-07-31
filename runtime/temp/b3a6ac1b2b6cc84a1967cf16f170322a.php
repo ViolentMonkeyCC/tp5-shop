@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\index\top.html";i:1532832601;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\index\top.html";i:1532998473;}*/ ?>
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -34,10 +34,10 @@
     </ul>
     <div class="topright">
         <ul>
-            <li><a href="login.html" target="_parent">退出</a></li>
+            <li><a href="<?php echo url('/admin/public/logout'); ?>" onclick="return confirm('确认退出!')" target="_parent">退出</a></li>
         </ul>
         <div class="user">
-            <span>欢迎您，admin</span>
+            <span>欢迎您，<?php echo session('username'); ?></span>
         </div>
     </div>
 </body>

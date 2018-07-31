@@ -17,8 +17,26 @@ class User extends Model
     //时间戳自动维护
     protected $autoWriteTimestamp = true;
 
+    //判断用户是否登录成功
+    public function checkLogin($userName, $password){
+        $where = [
+            'username' => $userName,
+            'password' => md5($password.config('password_salt')),
+        ];
+        $userInfo = $this->where($where)->find();
+        if ($userInfo) {
+            session('user_id', $userInfo['user_id']);
+            session('username', $userInfo['username']);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
     //时间处理方法
     protected static function init() {
+
         //入库前的事件before_insert 新增
         User::event('before_insert', function ($user) {
             //halt($user);

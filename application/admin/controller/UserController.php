@@ -2,11 +2,9 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
-use app\admin\validate\UserValidate;
 use app\admin\model\User;
 
-class UserController extends Controller
+class UserController extends CommonController
 {
     //用户添加页
     public function add(){
@@ -90,4 +88,5 @@ class UserController extends Controller
         }
         
     }
+
 }
