@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\user\add.html";i:1532868694;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\user\add.html";i:1533126741;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -32,6 +32,15 @@
                 <li>
                     <label>用户名</label>
                     <input name="username" placeholder="请输入用户名" type="text" class="dfinput" />
+                </li>
+                <li>
+                    <label>分配角色</label>
+                    <select name="role_id" class="dfinput" >
+                        <option value="">请选择角色</option>
+                        <?php if(is_array($roles) || $roles instanceof \think\Collection || $roles instanceof \think\Paginator): if( count($roles)==0 ) : echo "" ;else: foreach($roles as $key=>$role): ?>
+                        <option value="<?php echo $role['role_id']; ?>"><?php echo $role['role_name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
                 </li>
                 <li>
                     <label>密码</label>

@@ -34,6 +34,15 @@
                     <input name="username" placeholder="请输入用户名" value="{$userData['username']}" type="text" class="dfinput" />
                 </li>
                 <li>
+                    <label>分配角色</label>
+                    <select name="role_id" class="dfinput" >
+                        <option value="">请选择角色</option>
+                        {foreach name='roles' item='role'}
+                        <option value="{$role['role_id']}">{$role['role_name']}</option>
+                        {/foreach}
+                    </select>
+                </li>
+                <li>
                     <label>密码</label>
                     <input name="password" placeholder="请输入密码" type="password" class="dfinput" /><i></i>
                 </li>
@@ -49,4 +58,7 @@
         </form>
     </div>
 </body>
+<script>
+    $("select[name='role_id']").val("{$userData['role_id']}");
+</script>
 </html>

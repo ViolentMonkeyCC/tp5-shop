@@ -27,5 +27,6 @@ class RoleValidate extends Validate
     //验证场景
     protected $scene = [
         'add' => 'role_name',
+        'upd' => 'role_name',
     ];
 }

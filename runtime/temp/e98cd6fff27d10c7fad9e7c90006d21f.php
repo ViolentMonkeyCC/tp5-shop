@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\user\index.html";i:1532870852;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\user\index.html";i:1533127248;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -70,7 +70,7 @@
                     </td>
                     <td><?php echo $key+1; ?></td>
                     <td><?php echo $user['username']; ?></td>
-                    <td><?php echo $user['role_id']; ?></td>
+                    <td><?php echo $user['role_name']; ?></td>
                     <td><?php echo $user['create_time']; ?></td>
                     <td><?php echo $user['update_time']; ?></td>
                     <td><a href="<?php echo url('/admin/user/upd', ['user_id' => $user['user_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/user/del', ['user_id' => $user['user_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>

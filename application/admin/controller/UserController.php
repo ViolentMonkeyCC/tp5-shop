@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\Role;
 use app\admin\model\User;
 
 class UserController extends CommonController
@@ -26,13 +27,20 @@ class UserController extends CommonController
                 $this->error('添加失败!');
             }
         }
-        return $this->fetch();
+
+        //取出所有的角色数据,分配到模板中
+        $roles = Role::select()->toArray();
+        return $this->fetch('', ['roles' => $roles]);
     }
     
     //用户列表页
     public function index(){
         //回显数据
-        $users = User::order('user_id desc')->paginate(3);
+        $userModel = new User();
+        $users = $userModel->field('t1.*, t2.role_name')
+            ->alias('t1')
+            ->join('sh_role t2', 't1.role_id=t2.role_id', 'left')
+            ->paginate(3);
         return $this->fetch('', ['users' => $users, 'count' => User::count()]);
     }
 
@@ -73,7 +81,9 @@ class UserController extends CommonController
         //接收参数
         $user_id = input('user_id');
         $userData = $userModel->find($user_id);
-        return $this->fetch('', ['userData' => $userData]);
+        //取出所有的角色数据,分配到模板中
+        $roles = Role::select()->toArray();
+        return $this->fetch('', ['userData' => $userData, 'roles' => $roles]);
     }
     
     //用户删除页

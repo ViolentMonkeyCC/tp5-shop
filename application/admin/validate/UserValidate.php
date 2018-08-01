@@ -15,6 +15,7 @@ class UserValidate extends Validate
     //1.验证规则
     protected $rule = [
         'username' => 'require|unique:user',
+        'role_id' => 'require',
         'password' => 'require|min:5',
         'repassword' => 'require|confirm:password',
     ];
@@ -22,6 +23,7 @@ class UserValidate extends Validate
     protected $message = [
         'username.require' => '用户名必填!',
         'username.unique' => '用户名重复!',
+        'role_id.require' => '角色必选!',
         'password.require' => '密码必填!',
         'password.min' => '密码最短5位!',
         'repassword.require' => '确认密码必填!',
@@ -30,8 +32,8 @@ class UserValidate extends Validate
     //3.验证场景
     protected $scene = [
         'login' => ['username' => 'require', 'password'],
-        'add' => ['username', 'password', 'repassword'],
-        'OnlyUsername' => ['username' => 'require'],
-        'UsernamePassword' => ['username' => 'require', 'password', 'repassword'],
+        'add' => ['username', 'role_id', 'password', 'repassword'],
+        'OnlyUsername' => ['username', 'role_id'],
+        'UsernamePassword' => ['username', 'role_id', 'password', 'repassword'],
     ];
 }

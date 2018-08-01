@@ -50,6 +50,9 @@ Route::group('admin', function () {
     Route::get('auth/del', 'admin/auth/del');//权限删除页
 
     /**********************后台角色管理路由*************************/
-    Route::any('role/add', 'admin/role/add');//权限添加页
+    Route::any('role/add', 'admin/role/add');//角色分配页
+    Route::any('role/index', 'admin/role/index');//角色分配列表页
+    Route::any('role/upd', 'admin/role/upd');//角色分配编辑页
+    Route::any('role/del', 'admin/role/del');//角色分配删除页
 
 });

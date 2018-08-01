@@ -53,31 +53,26 @@
                     <th>
                         <input name="" type="checkbox" value="" id="checkAll" />
                     </th>
-                    <th>权限名称</th>
-                    <th>父级权限</th>
-                    <th>控制器名</th>
-                    <th>方法名</th>
+                    <th>序号</th>
+                    <th>角色名称</th>
+                    <th>拥有权限</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                {foreach name='auths' item='auth'}
+                {foreach name='roles' item='role'}
                 <tr>
                     <td>
                         <input name="" type="checkbox" value="" />
                     </td>
-                    <td>{:str_repeat('&nbsp', $auth['level']*3)}{$auth['auth_name']}</td>
-                    <td>{$auth['a_name']?: '顶级(1级)分类'}</td>
-                    <td>{$auth['auth_a']}</td>
-                    <td>{$auth['auth_c']}</td>
-                    <td><a href="{:url('/admin/auth/upd', ['auth_id' => $auth['auth_id']])}" class="tablelink">编辑</a> <a href="{:url('/admin/auth/del', ['auth_id' => $auth['auth_id']])}" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
+                    <td>{$key+1}</td>
+                    <td>{$role['role_name']}</td>
+                    <td>{$role['all_auth']?: '所有权限'}</td>
+                    <td auth_ids_list="{$role['auth_ids_list']}"><a href="{:url('/admin/role/upd', ['role_id' => $role['role_id']])}" class="tablelink">编辑</a> <a href="{:url('/admin/role/del', ['role_id' => $role['role_id']])}" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
                 {/foreach}
             </tbody>
         </table>
-        <div class="pagin">
-            <div class="message">共<i class="blue">{$count}</i>条记录</div>
-        </div>
         <div class="tip">
             <div class="tiptop"><span>提示信息</span>
                 <a></a>
@@ -99,5 +94,8 @@
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
 </body>
-
+<script>
+    $("td[auth_ids_list = '*']").html('');
+    $(".tablelist tbody tr:odd").addClass('odd');
+</script>
 </html>
