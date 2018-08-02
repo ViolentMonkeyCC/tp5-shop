@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\index.html";i:1533050561;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\index.html";i:1533174375;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -69,8 +69,8 @@
                     </td>
                     <td><?php echo str_repeat('&nbsp', $auth['level']*3); ?><?php echo $auth['auth_name']; ?></td>
                     <td><?php echo !empty($auth['a_name'])?$auth['a_name']: '顶级(1级)分类'; ?></td>
-                    <td><?php echo $auth['auth_a']; ?></td>
                     <td><?php echo $auth['auth_c']; ?></td>
+                    <td><?php echo $auth['auth_a']; ?></td>
                     <td><a href="<?php echo url('/admin/auth/upd', ['auth_id' => $auth['auth_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/auth/del', ['auth_id' => $auth['auth_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
