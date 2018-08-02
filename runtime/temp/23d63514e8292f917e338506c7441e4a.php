@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\index.html";i:1533177083;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\category\index.html";i:1533201415;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -54,31 +54,28 @@
                     <th>
                         <input name="" type="checkbox" value="" id="checkAll" />
                     </th>
-                    <th>权限名称</th>
-                    <th>父级权限</th>
-                    <th>控制器名</th>
-                    <th>方法名</th>
+                    <th>序号</th>
+                    <th>分类名称</th>
+                    <th>所属父分类</th>
+                    <th>是否展示</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if(is_array($auths) || $auths instanceof \think\Collection || $auths instanceof \think\Paginator): if( count($auths)==0 ) : echo "" ;else: foreach($auths as $key=>$auth): ?>
+                <?php if(is_array($cats) || $cats instanceof \think\Collection || $cats instanceof \think\Paginator): if( count($cats)==0 ) : echo "" ;else: foreach($cats as $key=>$cat): ?>
                 <tr>
                     <td>
                         <input name="" type="checkbox" value="" />
                     </td>
-                    <td><?php echo str_repeat('&nbsp', $auth['level']*3); ?><?php echo $auth['auth_name']; ?></td>
-                    <td><?php echo !empty($auth['a_name'])?$auth['a_name']: '顶级(1级)分类'; ?></td>
-                    <td><?php echo $auth['auth_c']; ?></td>
-                    <td><?php echo $auth['auth_a']; ?></td>
-                    <td><a href="<?php echo url('/admin/auth/upd', ['auth_id' => $auth['auth_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/auth/del', ['auth_id' => $auth['auth_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
+                    <td><?php echo $key+1; ?></td>
+                    <td><?php echo str_repeat('&nbsp', $cat['level']*2); ?><?php echo $cat['cat_name']; ?></td>
+                    <td><?php echo !empty($cat['p_name'])?$cat['p_name']:'顶级分类'; ?></td>
+                    <td><?php echo config('admin_type')[$cat['is_show']]; ?></td>
+                    <td><a href="<?php echo url('/admin/category/upd', ['cat_id' => $cat['cat_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/category/del', ['cat_id' => $cat['cat_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
         </table>
-        <div class="pagin">
-            <div class="message">共<i class="blue"><?php echo $count; ?></i>条记录</div>
-        </div>
         <div class="tip">
             <div class="tiptop"><span>提示信息</span>
                 <a></a>

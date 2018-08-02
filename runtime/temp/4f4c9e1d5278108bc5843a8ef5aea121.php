@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\index.html";i:1533177083;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\type\getattr.html";i:1533197210;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -54,31 +54,32 @@
                     <th>
                         <input name="" type="checkbox" value="" id="checkAll" />
                     </th>
-                    <th>权限名称</th>
-                    <th>父级权限</th>
-                    <th>控制器名</th>
-                    <th>方法名</th>
+                    <th>序号</th>
+                    <th>属性名称</th>
+                    <th>类型名称</th>
+                    <th>属性类型</th>
+                    <th>录入方式</th>
+                    <th>属性值</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if(is_array($auths) || $auths instanceof \think\Collection || $auths instanceof \think\Paginator): if( count($auths)==0 ) : echo "" ;else: foreach($auths as $key=>$auth): ?>
+                <?php if(is_array($attributes) || $attributes instanceof \think\Collection || $attributes instanceof \think\Paginator): if( count($attributes)==0 ) : echo "" ;else: foreach($attributes as $key=>$attribute): ?>
                 <tr>
                     <td>
                         <input name="" type="checkbox" value="" />
                     </td>
-                    <td><?php echo str_repeat('&nbsp', $auth['level']*3); ?><?php echo $auth['auth_name']; ?></td>
-                    <td><?php echo !empty($auth['a_name'])?$auth['a_name']: '顶级(1级)分类'; ?></td>
-                    <td><?php echo $auth['auth_c']; ?></td>
-                    <td><?php echo $auth['auth_a']; ?></td>
-                    <td><a href="<?php echo url('/admin/auth/upd', ['auth_id' => $auth['auth_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/auth/del', ['auth_id' => $auth['auth_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
+                    <td><?php echo $key+1; ?></td>
+                    <td><?php echo $attribute['attr_name']; ?></td>
+                    <td><?php echo $type_name; ?></td>
+                    <td><?php echo config('admin_type')[$attribute['attr_type']]; ?></td>
+                    <td><?php echo config('admin_type')[$attribute['attr_input_type']]; ?></td>
+                    <td><?php echo $attribute['attr_values']; ?></td>
+                    <td><a href="<?php echo url('/admin/attribute/upd', ['attr_id' => $attribute['attr_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/attribute/del', ['attr_id' => $attribute['attr_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
         </table>
-        <div class="pagin">
-            <div class="message">共<i class="blue"><?php echo $count; ?></i>条记录</div>
-        </div>
         <div class="tip">
             <div class="tiptop"><span>提示信息</span>
                 <a></a>
