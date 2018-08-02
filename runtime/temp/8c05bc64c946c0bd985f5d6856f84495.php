@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\add.html";i:1533050561;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\auth\add.html";i:1533174376;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -45,11 +45,11 @@
                 </li>
                 <li>
                     <label>控制器名</label>
-                    <input name="auth_a" placeholder="请输入控制器名" type="text" class="dfinput" />
+                    <input name="auth_c" placeholder="请输入控制器名" type="text" class="dfinput" />
                 </li>
                 <li>
                     <label>方法名</label>
-                    <input name="auth_c" placeholder="请输入方法名" type="text" class="dfinput" />
+                    <input name="auth_a" placeholder="请输入方法名" type="text" class="dfinput" />
                 </li>
             </ul>
 			<li>

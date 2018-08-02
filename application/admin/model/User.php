@@ -84,5 +84,17 @@ class User extends Model
         //写入到session中去
         session('auths', $auths);
         session('children', $children);
+        //写入管理员可访问的权限到session中去, 用于防翻墙
+        if ($auth_ids_list == '*'){
+            //超级管理员
+            session('visitorAuth', '*');
+        }else {
+            //非超级管理员
+            $visitorAuth = [];
+            foreach($oldAuths as $v) {
+                $visitorAuth[] = strtolower($v['auth_c'].'/'.$v['auth_a']);
+            }
+            session('visitorAuth', $visitorAuth);
+        }
     }
 }
