@@ -71,8 +71,8 @@
                     <td>{$key+1}</td>
                     <td>{$attr['attr_name']}</td>
                     <td>{$attr['type_name']}</td>
-                    <td>{:config('admin_type')[$attr['attr_type']]}</td>
-                    <td>{:config('admin_type')[$attr['attr_input_type']]}</td>
+                    <td>{:config('attr_type')[$attr['attr_type']]}</td>
+                    <td>{:config('attr_input_type')[$attr['attr_input_type']]}</td>
                     <td>{$attr['attr_values']}</td>
                     <td><a href="{:url('/admin/attribute/upd', ['attr_id' => $attr['attr_id']])}" class="tablelink">编辑</a> <a href="{:url('/admin/attribute/del', ['attr_id' => $attr['attr_id']])}" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>

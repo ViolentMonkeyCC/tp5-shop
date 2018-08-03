@@ -74,4 +74,11 @@ Route::group('admin', function () {
     Route::any('category/upd', 'admin/category/upd');//商品分类编辑页
     Route::any('category/del', 'admin/category/del');//商品分类删除页
 
+    /**********************后台商品管理路由*************************/
+    Route::any('goods/add', 'admin/goods/add');//商品添加页
+    Route::any('goods/getTypeAttr', 'admin/goods/getTypeAttr');//商品添加页
+    Route::get('goods/index', 'admin/goods/index');//商品列表页
+    Route::any('goods/upd', 'admin/goods/upd');//商品编辑页
+    Route::any('goods/del', 'admin/goods/del');//商品删除页
+
 });

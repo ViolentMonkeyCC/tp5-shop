@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\category\index.html";i:1533201415;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\category\index.html";i:1533296897;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -70,7 +70,7 @@
                     <td><?php echo $key+1; ?></td>
                     <td><?php echo str_repeat('&nbsp', $cat['level']*2); ?><?php echo $cat['cat_name']; ?></td>
                     <td><?php echo !empty($cat['p_name'])?$cat['p_name']:'顶级分类'; ?></td>
-                    <td><?php echo config('admin_type')[$cat['is_show']]; ?></td>
+                    <td><?php echo config('is_show')[$cat['is_show']]; ?></td>
                     <td><a href="<?php echo url('/admin/category/upd', ['cat_id' => $cat['cat_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/category/del', ['cat_id' => $cat['cat_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>

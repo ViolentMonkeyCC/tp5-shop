@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\attribute\add.html";i:1533192494;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\attribute\add.html";i:1533296787;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -49,8 +49,8 @@
                 </li>
                 <li>
                     <label>属性录入方式</label>
-                    <input type="radio" name="attr_input_type" value="2" checked="checked" />手工输入
-                    <input type="radio" name="attr_input_type" value="3" />列表选择
+                    <input type="radio" name="attr_input_type" value="0" checked="checked" />手工输入
+                    <input type="radio" name="attr_input_type" value="1" />列表选择
                 </li>
                 <li>
                     <label>属性值</label>

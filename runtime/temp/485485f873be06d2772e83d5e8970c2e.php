@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\attribute\index.html";i:1533192680;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/admin\view\attribute\index.html";i:1533296897;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -72,8 +72,8 @@
                     <td><?php echo $key+1; ?></td>
                     <td><?php echo $attr['attr_name']; ?></td>
                     <td><?php echo $attr['type_name']; ?></td>
-                    <td><?php echo config('admin_type')[$attr['attr_type']]; ?></td>
-                    <td><?php echo config('admin_type')[$attr['attr_input_type']]; ?></td>
+                    <td><?php echo config('attr_type')[$attr['attr_type']]; ?></td>
+                    <td><?php echo config('attr_input_type')[$attr['attr_input_type']]; ?></td>
                     <td><?php echo $attr['attr_values']; ?></td>
                     <td><a href="<?php echo url('/admin/attribute/upd', ['attr_id' => $attr['attr_id']]); ?>" class="tablelink">编辑</a> <a href="<?php echo url('/admin/attribute/del', ['attr_id' => $attr['attr_id']]); ?>" onclick="return confirm('确认删除?')" class="tablelink"> 删除</a></td>
                 </tr>
