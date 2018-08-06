@@ -62,4 +62,14 @@ class GoodsController extends CommonController
             echo json_encode($attributes);die;
         }
     }
+
+    //商品列表页
+    public function index(){
+        $goods = Goods::field('t1.*, t2.cat_name')
+            ->alias('t1')
+            ->join('sh_category t2', 't1.cat_id = t2.cat_id', 'left')
+            ->select()
+            ->toArray();
+        return $this->fetch('', ['goods' => $goods]);
+    }
 }

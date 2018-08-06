@@ -116,6 +116,7 @@
                     <label>&nbsp;</label>
                     <input name="" id="btnSubmit" type="submit" class="btn" value="确认保存" />
              </li>
+
         </form>
     </div>
 </body>
@@ -141,30 +142,58 @@
                 html += "<li>";
                 //1.单选属性(1)前面有个[+]号
                 if (res[i].attr_type == 1){
-                    html += "<a href='javascript:;'>[+]</a>";
+                    html += "<a href='javascript:;' onclick='cloneAttr(this)'>[+]</a>";
                 }
                 //2.拼接属性名称
-                html += res.arrt_name + '&nbsp;&nbsp;';
+                html += res[i].attr_name + '&nbsp;&nbsp;';
                 //3.判断属性值的入录入方式
-                if (res.attr_input_type == 0) {
+                //单选属性表单name后面需要拼接[], 唯一属性不需要
+                var hasManyValue = res[i].attr_type == 1 ? "[]" : '';
+                if (res[i].attr_input_type == 0) {
                     //手工输入
-                    html += "<input name='attr_input_type' type='text' class='dfinput' placeholder='请输入属性值'>";
+                    html += "<input name='goodsAttrValue["+ res[i].attr_id +"]"+ hasManyValue +"' type='text' class='dfinput' placeholder='请输入属性值'>";
                 }
                 else {
                     //列表输入
-
-                    html += "<select class='dfinput'>"
-                    html += "</select>"
+                    var attr_values = res[i].attr_values;
+                    //炸开属性 attr_values => '香槟金|黑色|灰色' ==>['香槟金', '黑色', '灰色']
+                    var arr_values = attr_values.split('|');
+                    html += "<select class='dfinput' name='goodsAttrValue["+ res[i].attr_id +"]"+ hasManyValue +"'>";
+                    html += "<option value=''>请选择</option>";
+                    for (var j = 0, arrLength = arr_values.length; j < arrLength; j++) {
+                        html += "<option value='"+ arr_values[j] +"'>"+ arr_values[j] +"</option>";
+                    }
+                    html += "</select>";
+                }
+                //4.单选属性需要进行拼接价格的input框
+                //价格只针对单选属性,name后面必须加[]
+                if (res[i].attr_type == 1) {
+                    html += "&nbsp;&nbsp;价格: <input type='text' name='goodsAttrPrice["+ res[i].attr_id +"][]' class='dfinput' placeholder='请输入商品价格'>"
                 }
                 html += "</li>";
             }
-            
-            
-            
-            
             html += "</ul>";
+
+            //把最终拼接好的ul放在属性容器中
+            $("#attrContains").html(html);
+
         }, 'json');
     });
+
+    //克隆单选属性
+    function cloneAttr(ele) {
+        //获取啊标签的内容
+        var text = $(ele).html();
+        if (text == "[+]") {
+            //值是[+], 克隆一份
+            var newLi = $(ele).parent().clone();
+            newLi.children('a').html('[-]');
+            newLi.children('input').val('');
+            $(ele).parent().after(newLi);
+        }else {
+            $(ele).parent().remove();
+        }
+    }
 
     //克隆图片上传框,进行多图上传
     function cloneImg(ele) {

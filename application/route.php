@@ -25,7 +25,7 @@ use think\Route;
 /*//定义路由规则
 Route::get('/', 'index/index/index');
 Route::get('login/[:id]', 'index/index/login');//[:id]可省参数*/
-Route::get('/', 'admin/index/index');
+Route::get('/houtai', 'admin/index/index');
 //后台路由
 Route::group('admin', function () {
     /**********************首页展示路由*************************/
@@ -82,3 +82,16 @@ Route::group('admin', function () {
     Route::any('goods/del', 'admin/goods/del');//商品删除页
 
 });
+
+//前台首页路由
+Route::get('/', 'home/index/index');
+//前台路由
+Route::group('home', function() {
+    /**********************前台登录/注册路由*************************/
+    Route::any('public/register', 'home/public/register');//前台注册页面
+    Route::any('public/login', 'home/public/login');//前台登录页面
+    Route::get('public/logout', 'home/public/logout');//前台退出页面
+    Route::get('public/SendSms', 'home/public/SendSms');//前台注册发送短信验证码页面
+});
+
+

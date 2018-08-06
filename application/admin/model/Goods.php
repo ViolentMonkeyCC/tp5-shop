@@ -2,6 +2,7 @@
 
 namespace app\admin\model;
 
+use think\Db;
 use think\Model;
 
 class Goods extends Model
@@ -65,5 +66,51 @@ class Goods extends Model
         }
         //返回路径
         return ['goods_middle' => $goods_middle, 'goods_thumb' => $goods_thumb];
+    }
+
+    //事件处理
+    protected static function init() {
+        Goods::event('before_insert', function ($goods) {
+            //设置货号唯一
+            $goods['goods_sn'] = date('ymdhis').mt_rand();
+        });
+
+        //入库后的事件after_insert,完成商品的入库到商品属性表(sh_goods_attr)
+        Goods::event('after_insert', function($goods) {
+            //$goods 当表单对象数据入库成功之后,返回表的记录数据对象,其中带着自增主键goods_id
+            $goods_id = $goods['goods_id'];
+            $postData = input('post.');
+            $goodsAttrValue = $postData['goodsAttrValue'];
+            $goodsAttrPrice = $postData['goodsAttrPrice'];
+            //因为有多个属性,所以需要循环进行入库(sh_goods_attr)
+            foreach ($goodsAttrValue as $attr_id=>$attr_value) {
+                //单选属性$attr_value是一个数组
+                if (is_array($attr_value)) {
+                    foreach ($attr_value as $k => $singel_attr_value) {
+                        $data = [
+                            'goods_id' => $goods_id,
+                            'attr_id' => $attr_id,
+                            'attr_value' => $singel_attr_value,
+                            //通过下标获取单选属性对应的价格
+                            'attr_price' => $goodsAttrPrice[$attr_id][$k],
+                            'create_time' => time(),
+                            'update_time' => time(),
+                        ];
+                        //入库到商品属性表
+                        Db::name('goods_attr')->insert($data);
+                    }
+                }else {
+                    $data = [
+                        'goods_id' => $goods_id,
+                        'attr_id' => $attr_id,
+                        'attr_value' => $attr_value,
+                        'create_time' => time(),
+                        'update_time' => time(),
+                    ];
+                    //入库到商品属性表
+                    Db::name('goods_attr')->insert($data);
+                }
+            }
+        });
     }
 }
