@@ -99,4 +99,69 @@ class PublicController extends Controller
             }
         }
     }
+
+    //忘记密码页面
+    public function forgetPassword(){
+        return $this->fetch('public/forgetpassword');
+    }
+
+    //ajax发送邮件
+    public function sendEmail(){
+        //1.判断是否是ajax请求
+        if (request()->isAjax()) {
+            //接收参数
+            $email= input('email');
+            //查询数据库中是否有,如果有则发送邮件,没有就不发送
+            $result = Member::where('email', $email)->find()->toArray();
+            if (!$result) {
+                //不存在此邮箱
+                $response = ['code' => -1, 'message' => '您输入的邮箱不存在!'];
+                echo json_encode($response);die;
+            }
+            $member_id = $result['member_id'];
+            $time = time();
+            $hash = md5($member_id.$time.config('email_salt'));
+            $href = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/home/public/setNewPassword/".$member_id."/".$time."/".$hash;
+            $content = "<a href='{$href}' target='_blank'>京西商城-找回密码</a>";
+            //发送邮件
+            if ( sendEmail([$email], '找回密码', $content) ) {
+                $response = ['code' => 200, 'message' => '发送成功,请登录邮箱查看!'];
+                echo json_encode($response);die;
+            }else {
+                $response = ['code' => -2, 'message' => '发送失败,请稍后重试!'];
+                echo json_encode($response);die;
+            }
+        }
+    }
+
+    //重置新密码路由
+    public function setNewPassword($member_id, $time, $hash){
+        //判断邮件地址是否被篡改, 判断hash加密字符串的结果, 不一样则被篡改
+        if (md5($member_id.$time.config('email_salt')) != $hash){
+            exit('你对地址做了啥?');
+        }
+        //判断是否在有效期内30分钟
+        if (time() > $time+1800) {
+            exit('链接已失效!');
+        }
+        if (request()->isPost()){
+            $postData = input('post.');
+            $result = $this->validate($postData, 'MemberValidate.setNewPassword', [], true);
+            if ($result !== true) {
+                $this->error(implode(',', $result));
+            }
+            //更新密码
+            $data = [
+                'member_id' => $member_id,
+                'password' => md5($postData['password'].config('password_salt'))
+            ];
+            $memModel = new Member();
+            if ($memModel->update($data)) {
+                $this->success('重置密码成功!', url('home/public/login'));
+            }else {
+                $this->error('重置失败!');
+            }
+        }
+        return $this->fetch('public/setnewpassword');
+    }
 }

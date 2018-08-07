@@ -146,21 +146,21 @@
 				
 				<div class="cat_bd">
 					<!--循环顶级-->
-					<?php foreach($children[0] as $one): ?>
+					<?php foreach($children[0] as $one_cat_id): ?>
 					<div class="cat item1">
 
-						<h3><a href="">{$cats[$one]['cat_name']}</a> <b></b></h3>
+						<h3><a href="<?php echo url('/home/category/index', ['cat_id' => $one_cat_id]); ?>">{$cats[$one_cat_id]['cat_name']}</a> <b></b></h3>
 						<div class="cat_detail">
 
 							<!--循环二级-->
-							<?php foreach($children[$one] as $two): ?>
+							<?php foreach($children[$one_cat_id] as $two_cat_id): ?>
 							<dl class="dl_1st">
-								<dt><a href="">{$cats[$two]['cat_name']}</a></dt>
+								<dt><a href="<?php echo url('/home/category/index', ['cat_id' => $two_cat_id]); ?>">{$cats[$two_cat_id]['cat_name']}</a></dt>
 								<dd>
 
 									<!--循环三级-->
-									<?php foreach($children[$two] as $three): ?>
-									<a href="">{$cats[$three]['cat_name']}</a>
+									<?php foreach($children[$two_cat_id] as $three_cat_id): ?>
+									<a href="<?php echo url('/home/category/index', ['cat_id' => $three_cat_id]); ?>">{$cats[$three_cat_id]['cat_name']}</a>
 									<?php endforeach; ?>
 								</dd>
 							</dl>

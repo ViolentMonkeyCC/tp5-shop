@@ -46,5 +46,6 @@ class MemberValidate extends Validate
     protected $scene = [
         'register' => ['username', 'email', 'password', 'repassword', 'captcha','phone'],
         'login' => ['username' => 'require', 'password', 'login_captcha'],
+        'setNewPassword' => ['password', 'repassword'],
     ];
 }

@@ -61,6 +61,8 @@ return [
     'home_static'            => '/static/home',
     //密码加密盐
     'password_salt'          => '$&^*&^&*%^@',
+    //邮箱加盐
+    'email_salt'             => 'jhf&^*^&*^',
 
     // 应用调试模式
     'app_debug'              => true,  //开启调试模式,上线后需设置为false

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\public\register.html";i:1533575635;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\public\register.html";i:1533575841;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -143,7 +143,7 @@
 </body>
 <script>
 	//短信发送倒计时
-	var time = 10;
+	var time = 60;
 	function countDown() {
 		if (time != 0) {
 		    $("#sendSms").prop('disabled', true);
@@ -151,7 +151,7 @@
 		}else {
             $("#sendSms").prop('disabled', false);
             $("#sendSms").val('发送短信');
-            time = 10;//重置时间,否则永远等于0
+            time = 60;//重置时间,否则永远等于0
 			return false; //退出函数,不在往下执行
 		}
 		//递归调用(递归出口当time == 0)

@@ -92,6 +92,12 @@ Route::group('home', function() {
     Route::any('public/login', 'home/public/login');//前台登录页面
     Route::get('public/logout', 'home/public/logout');//前台退出页面
     Route::get('public/SendSms', 'home/public/SendSms');//前台注册发送短信验证码页面
+    Route::get('public/forgetpassword', 'home/public/forgetpassword');//前台注册发送短信验证码页面
+    Route::get('public/sendemail', 'home/public/sendemail');//ajax发送邮件
+    Route::any('public/setnewpassword/:member_id/:time/:hash', 'home/public/setNewPassword');//重置新密码路由
+
+    /**********************前台导航(面包屑导航)路由*************************/
+    Route::get('category/index', 'home/category/index');
 });
 
 
