@@ -98,6 +98,7 @@ Route::group('home', function() {
 
     /**********************前台导航(面包屑导航)路由*************************/
     Route::get('category/index', 'home/category/index');
+    Route::get('goods/detail', 'home/goods/detail');//商品详情页
 });
 
 

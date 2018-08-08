@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\index\index.html";i:1533575841;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\index\index.html";i:1533648996;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -147,21 +147,21 @@
 				
 				<div class="cat_bd">
 					<!--循环顶级-->
-					<?php foreach($children[0] as $one): ?>
+					<?php foreach($children[0] as $one_cat_id): ?>
 					<div class="cat item1">
 
-						<h3><a href=""><?php echo $cats[$one]['cat_name']; ?></a> <b></b></h3>
+						<h3><a href="<?php echo url('/home/category/index', ['cat_id' => $one_cat_id]); ?>"><?php echo $cats[$one_cat_id]['cat_name']; ?></a> <b></b></h3>
 						<div class="cat_detail">
 
 							<!--循环二级-->
-							<?php foreach($children[$one] as $two): ?>
+							<?php foreach($children[$one_cat_id] as $two_cat_id): ?>
 							<dl class="dl_1st">
-								<dt><a href=""><?php echo $cats[$two]['cat_name']; ?></a></dt>
+								<dt><a href="<?php echo url('/home/category/index', ['cat_id' => $two_cat_id]); ?>"><?php echo $cats[$two_cat_id]['cat_name']; ?></a></dt>
 								<dd>
 
 									<!--循环三级-->
-									<?php foreach($children[$two] as $three): ?>
-									<a href=""><?php echo $cats[$three]['cat_name']; ?></a>
+									<?php foreach($children[$two_cat_id] as $three_cat_id): ?>
+									<a href="<?php echo url('/home/category/index', ['cat_id' => $three_cat_id]); ?>"><?php echo $cats[$three_cat_id]['cat_name']; ?></a>
 									<?php endforeach; ?>
 								</dd>
 							</dl>

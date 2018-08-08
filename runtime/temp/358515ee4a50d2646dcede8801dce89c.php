@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\public\login.html";i:1533613928;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"H:\phpStudy\PHPTutorial\WWW\local.shop.com\public/../application/home\view\public\login.html";i:1533648996;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
